@@ -1,16 +1,11 @@
-# React + Vite
+Working Link 👉🏻 https://car-dealer-ivory.vercel.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img width="2145" height="1161" alt="image" src="https://github.com/user-attachments/assets/f939af94-40fd-4a61-821a-f3c3379a801e" />
 
-Currently, two official plugins are available:
+<img width="2153" height="1162" alt="image" src="https://github.com/user-attachments/assets/b0d7fda1-103c-4ba8-8108-b9f2005f1688" />
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<img width="2089" height="1135" alt="image" src="https://github.com/user-attachments/assets/d36b75c0-ed0d-4d38-af33-3c7e6526bb3c" />
 
-## React Compiler
+<img width="2105" height="1141" alt="image" src="https://github.com/user-attachments/assets/ee61f36f-1880-4934-8882-6a9d5f0b4d2c" />
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<img width="2091" height="1133" alt="image" src="https://github.com/user-attachments/assets/6e76c347-a815-4d33-b377-42efb10b1f81" />
