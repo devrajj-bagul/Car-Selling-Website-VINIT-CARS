@@ -11,7 +11,7 @@ const OwnersImage = () => {
           {/* PERSON 1 */}
           <div className="flex flex-col items-center">
             <img
-              src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80&w=1160"
+              src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?cs=srgb&dl=pexels-italo-melo-881954-2379005.jpg&fm=jpg"
               alt="profile"
               className="aspect-square w-28 sm:w-32 lg:w-40 rounded-full object-cover"
             />
@@ -22,7 +22,7 @@ const OwnersImage = () => {
           {/* PERSON 2 */}
           <div className="flex flex-col items-center">
             <img
-              src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80&w=1160"
+              src="https://t4.ftcdn.net/jpg/03/80/58/23/360_F_380582318_5lJ52eVLcePphpM4pMHdew3wgopfhQSc.jpg"
               alt="profile"
               className="aspect-square w-28 sm:w-32 lg:w-40 rounded-full object-cover"
             />
@@ -33,11 +33,11 @@ const OwnersImage = () => {
           {/* PERSON 3 */}
           <div className="flex flex-col items-center">
             <img
-              src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=80&w=1160"
+              src="https://static.startuptalky.com/2024/03/Sneha-Choudhry-Women-Entrepreneurs-In-India-StartupTalky.jpg"
               alt="profile"
               className="aspect-square w-28 sm:w-32 lg:w-40 rounded-full object-cover"
             />
-            <h3 className="mt-3 text-lg font-semibold">Nitin </h3>
+            <h3 className="mt-3 text-lg font-semibold">Janhavi </h3>
             <p className="text-sm text-gray-600">Assistant</p>
           </div>
 

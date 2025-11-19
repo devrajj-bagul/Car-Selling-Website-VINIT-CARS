@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { UserButton, useUser } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
-import { HiMenu, HiX } from "react-icons/hi";
+import { HiMenu, HiX, HiHome } from "react-icons/hi";
+import { FaHome } from "react-icons/fa";
 
 const Header = () => {
   const { user, isSignedIn } = useUser();
@@ -10,11 +11,13 @@ const Header = () => {
 
   return (
     <div className="flex justify-between items-center shadow-sm p-5 relative">
+
       {/* LOGO */}
-      {/* <img src="/vl.png" alt="LOGO" width={150} height={100} /> */}
-      <h1 className="text-2xl md:text-3xl font-bold text-gray-800 tracking-wide">
-        Vinit Cars
-      </h1>
+      <Link to="/">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 tracking-wide">
+          Vinit Cars
+        </h1>
+      </Link>
 
       {/* DESKTOP MENU */}
       <ul className="hidden md:flex gap-16">
@@ -56,8 +59,13 @@ const Header = () => {
       )}
 
       {/* MOBILE VIEW STARTS HERE */}
-
       <div className="md:hidden flex items-center gap-4">
+
+        {/* NEW HOME ICON FOR MOBILE */}
+        <Link to="/">
+          <FaHome className="text-3xl cursor-pointer" />
+        </Link>
+
         {/* Cars visible directly in mobile */}
         <Link to="/search">
           <span className="font-medium text-[16px] cursor-pointer">Cars</span>
@@ -79,13 +87,13 @@ const Header = () => {
           />
 
           <ul className="flex flex-col gap-6 mt-12 text-lg">
-            <Link to="/" onClick={() => setOpenMenu(false)}>
+            {/* <Link to="/" onClick={() => setOpenMenu(false)}>
               <li className="font-medium cursor-pointer">Home</li>
-            </Link>
+            </Link> */}
 
-            <Link to="/search" onClick={() => setOpenMenu(false)}>
+            {/* <Link to="/search" onClick={() => setOpenMenu(false)}>
               <li className="font-medium cursor-pointer">Contact Us</li>
-            </Link>
+            </Link> */}
 
             {isSignedIn ? (
               <Link to={"/profile"} onClick={() => setOpenMenu(false)}>

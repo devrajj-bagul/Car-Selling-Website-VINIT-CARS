@@ -37,10 +37,6 @@
       "options": [
         "Sedan",
         "SUV",
-        "Truck",
-        "Coupe",
-        "Convertible",
-        "Van",
         "Hatchback",
         "Electric",
         "Hybrid"
@@ -54,7 +50,7 @@
       "name": "condition",
       "fieldType": "dropdown",
       "required": true,
-      "options": ["New", "Used", "Certified Pre-Owned"],
+      "options": ["New", "Used"],
       "column": 1,
       "icon": "FaCheckCircle"
     },
@@ -195,7 +191,7 @@
       "label": "Offer Type",
       "name": "offerType",
       "fieldType": "dropdown",
-      "options": ["Buy", "Hot Offer", "Sell", "Urgent"],
+      "options": ["Sell", "Urgent"],
       "column": 2,
       "icon": "FaTags"
     },
