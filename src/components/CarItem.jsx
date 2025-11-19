@@ -9,10 +9,11 @@ import { Link, useParams } from "react-router-dom";
 
 
 const CarItem = ({ car }) => {
+  //  console.log("Car Data:", car);
   return (
     <Link to={'/listing-details/'+car?.id}>
     <div className="rounded-xl bg-white border hover:shadow-md curser-pointer">
-        <h2 className="absolute m-2 bg-green-500 px-2 rounded-full text-sm text-white">New</h2>
+        <h2 className="absolute m-2 bg-blue-500 px-2 rounded-full text-sm text-white">{car?.condition}</h2>
       <img
         src={car?.images[0]?.imageUrl}
         width={"100%"}
