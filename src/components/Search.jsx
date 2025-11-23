@@ -14,9 +14,9 @@ import Data from "@/Shared/Data";
 import { Link } from "react-router-dom";
 
 const Search = () => {
-  const [cars, setCars] = useState();
-  const [make, setMake] = useState();
-  const [price, setPrice] = useState();
+  // Only used cars
+  const [cars] = useState("Used");
+  const [make, setMake] = useState("");
 
   return (
     <div
@@ -26,21 +26,10 @@ const Search = () => {
       md:w-[60%] md:flex-row md:rounded-full md:p-5 md:items-center
       "
     >
-      {/* Cars */}
-      <Select onValueChange={(value) => setCars(value)}>
-        <SelectTrigger className="outline-none md:border-none w-full shadow-none text-md md:text-lg">
-          <SelectValue placeholder="Cars" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectItem value="New">New</SelectItem>
-            <SelectItem value="Used">Used</SelectItem>
-            {/* <SelectItem value="Certified pre-Owned">
-              Certified pre-Owned
-            </SelectItem> */}
-          </SelectGroup>
-        </SelectContent>
-      </Select>
+      {/* Cars (Fixed to USED) */}
+      <div className="w-full  text-md md:text-lg font-semibold text-gray-700 pl-5">
+        Used Cars
+      </div>
 
       <Separator orientation="vertical" className="hidden md:block" />
 
@@ -49,7 +38,9 @@ const Search = () => {
         <SelectTrigger className="outline-none md:border-none w-full shadow-none text-md md:text-lg">
           <SelectValue placeholder="Car Makes" />
         </SelectTrigger>
-        <SelectContent>
+
+        {/* Scrollable */}
+        <SelectContent className="max-h-60 overflow-y-auto">
           {Data.CarMakes.map((maker, index) => (
             <SelectItem key={index} value={maker.name}>
               {maker.name}
@@ -58,33 +49,14 @@ const Search = () => {
         </SelectContent>
       </Select>
 
-      <Separator orientation="vertical" className="hidden md:block" />
-
-      {/* Pricing */}
-      <Select onValueChange={(value) => setPrice(value)}>
-        <SelectTrigger className="outline-none md:border-none w-full shadow-none text-md md:text-lg">
-          <SelectValue placeholder="Pricing" />
-        </SelectTrigger>
-        <SelectContent>
-          {Data.Pricing.map((p, index) => (
-            <SelectItem key={index} value={p.amount}>
-              ₹{p.amount}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-
-      {/* Search Button */}
-      <Link to={`/search?cars=${cars}&make=${make}&price=${price}`}>
-        {/* Desktop Icon */}
+      {/* Search Button – always active */}
+      <Link to={`/search?cars=${cars}&make=${make || ""}`}>
         <TbSettingsSearch
           className="
             hidden md:block text-[50px] bg-primary p-3 rounded-full 
             text-white hover:scale-105 transition-all cursor-pointer
           "
         />
-
-        {/* Mobile Search Button */}
         <button
           className="
             md:hidden bg-primary text-white 

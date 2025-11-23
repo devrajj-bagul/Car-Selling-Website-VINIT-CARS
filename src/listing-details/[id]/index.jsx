@@ -12,7 +12,6 @@ import Features from "../components/Features";
 import Pricing from "../components/Pricing";
 import Specification from "../components/Specification";
 import OwnersDetail from "@/components/OwnersDetail";
-import FinanacialCalculator from "@/components/FinanacialCalculator";
 import Footer from "@/components/Footer";
 import MostSearchedCar from "@/components/MostSearchedCar";
 
@@ -20,15 +19,10 @@ const ListingDetail = () => {
   const { id } = useParams();
   const [carDetail, setCarDetail] = useState();
 
-  // ⭐ Smooth scroll to top every time car ID changes
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [id]);
 
-  // ⭐ Fetch new car data on ID change
   useEffect(() => {
     GetCarDetail();
   }, [id]);
@@ -51,21 +45,42 @@ const ListingDetail = () => {
       {/* MAIN CONTENT */}
       <div className="p-5 md:p-10 md:px-20">
 
-        {/* Car Title Header */}
+        {/* 1️⃣ Car Title Header */}
         <DetailHeader carDetail={carDetail} />
 
-        {/* GRID LAYOUT */}
-        <div className="grid grid-cols-1 md:grid-cols-3 w-full mt-10 gap-5">
+        {/* 📱 MOBILE MODE (FULL SEPARATE ORDER) */}
+        <div className="block md:hidden space-y-6 mt-6">
 
-          {/* LEFT SIDE CONTENT */}
-          <div className="md:col-span-2 space-y-5">
+          {/* 2️⃣ Image */}
+          <ImageGallery carDetail={carDetail} />
+
+          {/* 3️⃣ Price */}
+          <Pricing carDetail={carDetail} />
+
+          {/* 4️⃣ Description */}
+          <Description carDetail={carDetail} />
+
+          {/* 5️⃣ Features */}
+          <Features features={carDetail?.features} />
+
+          {/* 6️⃣ Specification */}
+          <Specification carDetail={carDetail} />
+
+          {/* 7️⃣ Owner */}
+          <OwnersDetail carDetail={carDetail} />
+        </div>
+
+        {/* 🖥 DESKTOP VIEW (unchanged layout) */}
+        <div className="hidden md:grid grid-cols-3 w-full mt-10 gap-5">
+
+          {/* LEFT SIDE */}
+          <div className="col-span-2 space-y-5">
             <ImageGallery carDetail={carDetail} />
             <Description carDetail={carDetail} />
             <Features features={carDetail?.features} />
-            {/* <FinanacialCalculator carDetail={carDetail} /> */}
           </div>
 
-          {/* RIGHT SIDE CONTENT */}
+          {/* RIGHT SIDE */}
           <div className="space-y-5">
             <Pricing carDetail={carDetail} />
             <Specification carDetail={carDetail} />
@@ -74,9 +89,8 @@ const ListingDetail = () => {
         </div>
       </div>
 
-      {/* ⭐ Now the component loads after detail section */}
+      {/* Bottom Section */}
       <MostSearchedCar />
-
       <Footer />
     </div>
   );

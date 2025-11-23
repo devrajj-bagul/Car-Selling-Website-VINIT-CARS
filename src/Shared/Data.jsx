@@ -67,14 +67,6 @@ const CarMakes=[
         "id": 17,
         "name": "Mercedes-Benz"
     },
-    {
-        "id": 18,
-        "name": "Volvo"
-    },
-    {
-        "id": 19,
-        "name": "Lexus"
-    }
 ]
 
 const Pricing=[
