@@ -91,7 +91,7 @@ const HappyCustomers = () => {
         <div className="flex justify-center mt-10">
           <a
             href="https://youtube-shorts-zeta.vercel.app"
-            target="_blank"
+            target=""
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full shadow-lg transition"
           >
             ⭐ Watch More Reviews
