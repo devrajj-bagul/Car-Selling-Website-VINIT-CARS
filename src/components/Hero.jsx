@@ -1,17 +1,48 @@
-import React from 'react'
-import Search from './Search'
+import React from "react";
+import Search from "./Search";
 
 const Hero = () => {
   return (
-    <div>
-        <div className='flex flex-col items-center p-10 py-20 gap-6 h-[650px] w-full bg-[#eef0fc]'>
-            <h2 className='text-lg'>Apni pehli gaadi kharido Vinit Car Dealers se — trusted aur affordable deals yahi milti hain!</h2>
-            <h2 className='text-[60px] font-bold'>Find your Dream Car</h2>
-            <Search/>
-            <img src="/tesla.png" className='mt-10' alt="" />
-        </div>
-    </div>
-  )
-}
+    <div className="w-full bg-[#eef0fc]">
 
-export default Hero
+      <div
+        className="
+          flex flex-col items-center
+          w-full 
+          px-4 
+          py-14 
+          gap-6
+          sm:px-10 sm:py-20
+          sm:gap-6
+        "
+      >
+        {/* HEADING */}
+        <h2
+          className="
+            font-bold text-center leading-tight
+            text-[36px]
+            sm:text-[60px]   /* DESKTOP SAME SIZE */
+          "
+        >
+          Find your <br className="sm:hidden" /> Dream Car
+        </h2>
+
+        {/* SEARCH BOX */}
+        <Search />
+
+        {/* TESLA IMAGE */}
+        <img
+          src="/tesla.png"
+          alt="car"
+          className="
+            mt-4 w-[430px]       /* MOBILE SMALLER */
+            sm:w-auto sm:mt-10   /* DESKTOP ORIGINAL IMAGE SIZE */
+          "
+        />
+      </div>
+
+    </div>
+  );
+};
+
+export default Hero;
