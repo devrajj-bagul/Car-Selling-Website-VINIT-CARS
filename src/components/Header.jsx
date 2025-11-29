@@ -11,7 +11,6 @@ const Header = () => {
 
   return (
     <div className="flex justify-between items-center shadow-sm p-5 relative">
-
       {/* LOGO */}
       <Link to="/">
         <h1 className="text-2xl md:text-3xl font-bold text-gray-800 tracking-wide">
@@ -42,6 +41,16 @@ const Header = () => {
             Contact Us
           </a>
         </li>
+
+        <li className="font-medium hover:scale-105 transition-all cursor-pointer hover:text-primary">
+          <a
+            href="https://youtube-shorts-zeta.vercel.app/"
+            target=""
+            rel="noopener noreferrer"
+          >
+            Reviews
+          </a>
+        </li>
       </ul>
 
       {/* Desktop Buttons */}
@@ -60,7 +69,6 @@ const Header = () => {
 
       {/* MOBILE VIEW STARTS HERE */}
       <div className="md:hidden flex items-center gap-4">
-
         {/* NEW HOME ICON FOR MOBILE */}
         <Link to="/">
           <FaHome className="text-3xl cursor-pointer" />
@@ -91,9 +99,14 @@ const Header = () => {
               <li className="font-medium cursor-pointer">Home</li>
             </Link> */}
 
-            {/* <Link to="/search" onClick={() => setOpenMenu(false)}>
-              <li className="font-medium cursor-pointer">Contact Us</li>
-            </Link> */}
+            <a
+              href="https://youtube-shorts-zeta.vercel.app"
+              target=""
+              rel="noopener noreferrer"
+              onClick={() => setOpenMenu(false)}
+            >
+              <li className="font-medium cursor-pointer">Reviews</li>
+            </a>
 
             {isSignedIn ? (
               <Link to={"/profile"} onClick={() => setOpenMenu(false)}>

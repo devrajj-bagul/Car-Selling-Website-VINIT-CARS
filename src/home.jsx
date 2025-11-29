@@ -10,6 +10,7 @@ import Footer from './components/Footer'
 import OwnersImage from './components/OwnersImage'
 import SearchByOption from './search'
 import ALLCarsHere from './components/AllCarsHere'
+import HappyCustomers from './components/HappyCustomers'
 
 const Home = () => {
   return (
@@ -23,19 +24,13 @@ const Home = () => {
       <Hero/>
       {/* Category */}
       <Category/>
-
-
-      {/* MostSearchedCar */}
-      {/* <MostSearchedCar/> */}
-      {/* <SearchByOption/> */}
       {/* New comp create  */}
       <ALLCarsHere/>
-
-
       {/* InfoSection */}
       <InfoSection/>
       {/* Owners images  */}
       <OwnersImage/>
+      <HappyCustomers/>
       {/* Footer */}
       <Footer/>
     </div>
