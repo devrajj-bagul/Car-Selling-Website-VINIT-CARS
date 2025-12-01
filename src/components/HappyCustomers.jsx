@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 
 /* Convert Shorts link → Clean embed link */
 const cleanEmbed = (url) => {
@@ -46,35 +47,51 @@ const HappyCustomers = () => {
   }, [activeVideo]);
 
   return (
-    <section className="w-full py-10 bg-[#f5f5f5]">
+    <section className="w-full py-14 bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200">
       <div className="max-w-6xl mx-auto px-4">
 
-        <h2 className="text-3xl font-bold text-center mb-8">
+        {/* ✨ Heading Animation */}
+        <motion.h2
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-3xl font-bold text-center mb-10"
+        >
           Happy Customers 🎉
-        </h2>
+        </motion.h2>
 
         {/* Grid */}
         <div
           className="
             grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6
-            place-items-center     /* CENTER EVERY CARD */
+            place-items-center
           "
         >
-          {reels.map((item) => (
-            <div
+          {reels.map((item, index) => (
+            <motion.div
               key={item.id}
+              initial={{ opacity: 0, scale: 0.8, y: 40 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.15,
+                ease: "easeOut",
+              }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05 }}
               className="
-                bg-white rounded-xl shadow-lg p-3 
+                bg-white rounded-xl shadow-xl p-3 
                 flex items-center justify-center cursor-pointer
                 aspect-[9/16] overflow-hidden
-
-                w-[85%] max-w-[330px]    /* ⭐ MOBILE: fix width + center */
-                sm:w-full sm:max-w-none /* ⭐ Desktop unchanged */
+                w-[85%] max-w-[330px]
+                sm:w-full sm:max-w-none
+                transition
               "
               onClick={() => setActiveVideo(item.id)}
             >
               <iframe
-              loading="lazy"
+                loading="lazy"
                 ref={(el) => (iframeRefs.current[item.id] = el)}
                 className="rounded-lg w-full h-full object-cover"
                 src={cleanEmbed(item.original)}
@@ -83,20 +100,28 @@ const HappyCustomers = () => {
                 allowFullScreen
                 frameBorder="0"
               ></iframe>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* Watch more reviews button */}
-        <div className="flex justify-center mt-10">
-          <a
+        {/* ⭐ Animated Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="flex justify-center mt-10"
+        >
+          <motion.a
             href="https://youtube-shorts-zeta.vercel.app"
-            target=""
+            target="_blank"
+            whileHover={{ scale: 1.07 }}
+            whileTap={{ scale: 0.96 }}
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full shadow-lg transition"
           >
             ⭐ Watch More Reviews
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
 
       </div>
     </section>

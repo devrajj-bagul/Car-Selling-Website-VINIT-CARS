@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import React, { useEffect, useState } from "react";
 import DetailHeader from "../components/DetailHeader";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { db } from "./../../../configs";
 import { CarImages, CarListing } from "./../../../configs/schema";
 import { eq } from "drizzle-orm";
@@ -14,10 +14,12 @@ import Specification from "../components/Specification";
 import OwnersDetail from "@/components/OwnersDetail";
 import Footer from "@/components/Footer";
 import MostSearchedCar from "@/components/MostSearchedCar";
+import { motion } from "framer-motion";
 
 const ListingDetail = () => {
   const { id } = useParams();
   const [carDetail, setCarDetail] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -39,60 +41,109 @@ const ListingDetail = () => {
   };
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="min-h-screen"
+    >
       <Header />
 
-      {/* MAIN CONTENT */}
-      <div className="p-5 md:p-10 md:px-20">
-
-        {/* 1️⃣ Car Title Header */}
-        <DetailHeader carDetail={carDetail} />
-
-        {/* 📱 MOBILE MODE (FULL SEPARATE ORDER) */}
-        <div className="block md:hidden space-y-6 mt-6">
-
-          {/* 2️⃣ Image */}
-          <ImageGallery carDetail={carDetail} />
-
-          {/* 3️⃣ Price */}
-          <Pricing carDetail={carDetail} />
-
-          {/* 4️⃣ Description */}
-          <Description carDetail={carDetail} />
-
-          {/* 5️⃣ Features */}
-          <Features features={carDetail?.features} />
-
-          {/* 6️⃣ Specification */}
-          <Specification carDetail={carDetail} />
-
-          {/* 7️⃣ Owner */}
-          <OwnersDetail carDetail={carDetail} />
-        </div>
-
-        {/* 🖥 DESKTOP VIEW (unchanged layout) */}
-        <div className="hidden md:grid grid-cols-3 w-full mt-10 gap-5">
-
-          {/* LEFT SIDE */}
-          <div className="col-span-2 space-y-5">
-            <ImageGallery carDetail={carDetail} />
-            <Description carDetail={carDetail} />
-            <Features features={carDetail?.features} />
-          </div>
-
-          {/* RIGHT SIDE */}
-          <div className="space-y-5">
-            <Pricing carDetail={carDetail} />
-            <Specification carDetail={carDetail} />
-            <OwnersDetail carDetail={carDetail} />
-          </div>
-        </div>
+      {/* ⭐ MINIMAL BACK BUTTON */}
+      <div className="px-5 md:px-20 mt-6">
+        <motion.button
+          initial={{ opacity: 0, x: -15 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          onClick={() => navigate("/search")}
+          className="
+            flex items-center gap-1 
+            text-sm font-medium text-black 
+            hover:opacity-70 transition cursor-pointer
+          "
+        >
+          ← Back
+        </motion.button>
       </div>
 
-      {/* Bottom Section */}
+      {/* MAIN CONTENT */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="p-5 md:p-10 md:px-20"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <DetailHeader carDetail={carDetail} />
+        </motion.div>
+
+        {/* MOBILE */}
+        <div className="block md:hidden space-y-6 mt-6">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <ImageGallery carDetail={carDetail} />
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <Pricing carDetail={carDetail} />
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <Description carDetail={carDetail} />
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <Features features={carDetail?.features} />
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <Specification carDetail={carDetail} />
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <OwnersDetail carDetail={carDetail} />
+          </motion.div>
+        </div>
+
+        {/* DESKTOP */}
+        <div className="hidden md:grid grid-cols-3 w-full mt-10 gap-5">
+          <div className="col-span-2 space-y-5">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <ImageGallery carDetail={carDetail} />
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <Description carDetail={carDetail} />
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <Features features={carDetail?.features} />
+            </motion.div>
+          </div>
+
+          <div className="space-y-5">
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
+              <Pricing carDetail={carDetail} />
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
+              <Specification carDetail={carDetail} />
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
+              <OwnersDetail carDetail={carDetail} />
+            </motion.div>
+          </div>
+        </div>
+
+      </motion.div>
+
       <MostSearchedCar />
       <Footer />
-    </div>
+    </motion.div>
   );
 };
 

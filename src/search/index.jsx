@@ -3,18 +3,18 @@ import { db } from "./../../configs";
 import { CarImages, CarListing } from "./../../configs/schema";
 import { and, between, eq, gte } from "drizzle-orm";
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi";
 import Header from "@/components/Header";
-import Search from "@/components/Search";
 import CarItem from "@/components/CarItem";
 
 const SearchByOption = () => {
   const [searchParam] = useSearchParams();
   const [carList, setCarList] = useState([]);
 
-  const condition = searchParam.get("cars"); // new / used
-  const make = searchParam.get("make"); // Tata, Maruti, etc.
-  const price = searchParam.get("price"); // 0-500000, 500000-1000000, 2000000+
+  const condition = searchParam.get("cars");
+  const make = searchParam.get("make");
+  const price = searchParam.get("price");
 
   useEffect(() => {
     GetCarList();
@@ -23,31 +23,19 @@ const SearchByOption = () => {
   const GetCarList = async () => {
     let filterList = [];
 
-    // Filter 1: Condition
-    if (condition) {
-      filterList.push(eq(CarListing.condition, condition));
-    }
+    if (condition) filterList.push(eq(CarListing.condition, condition));
+    if (make) filterList.push(eq(CarListing.make, make));
 
-    // Filter 2: Make
-    if (make) {
-      filterList.push(eq(CarListing.make, make));
-    }
-
-    // Filter 3: Price
     if (price) {
       if (price.includes("-")) {
         let [min, max] = price.split("-");
-        min = Number(min);
-        max = Number(max);
-        filterList.push(between(CarListing.sellingPrice, min, max));
+        filterList.push(between(CarListing.sellingPrice, Number(min), Number(max)));
       } else {
-        // Example: price = "2000000+"
         let min = Number(price.replace("+", ""));
         filterList.push(gte(CarListing.sellingPrice, min));
       }
     }
 
-    // Final Query
     const result = await db
       .select()
       .from(CarListing)
@@ -62,11 +50,20 @@ const SearchByOption = () => {
     <div>
       <Header />
 
-      {/* <div className="p-16 bg-black flex justify-center">
-        <Search />
-      </div> */}
+      <div className="p-10 md:px-20">
 
-      <div className=" p-10 md:px-20">
+        {/* ⭐ SMALL BACK BUTTON */}
+        <Link
+          to="/"
+          className="
+            flex items-center gap-2 text-sm font-medium 
+            text-black w-fit cursor-pointer mb-4
+            hover:underline hover:opacity-80 transition
+          "
+        >
+          <BiArrowBack className="text-lg" /> Back
+        </Link>
+
         <h2 className="font-bold text-4xl">All Cars Listing</h2>
 
         {/* Car List */}

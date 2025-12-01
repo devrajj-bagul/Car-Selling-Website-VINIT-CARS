@@ -2,11 +2,12 @@ import Header from "@/components/Header";
 import Search from "@/components/Search";
 import { db } from "./../../../configs";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { CarImages, CarListing } from "./../../../configs/schema";
 import { eq } from "drizzle-orm";
 import Service from "@/Shared/Service";
 import CarItem from "@/components/CarItem";
+import { BiArrowBack } from "react-icons/bi";
 
 const SearchByCategory = () => {
   const { category } = useParams();
@@ -26,14 +27,27 @@ const SearchByCategory = () => {
     const resp = Service.FormatResult(result);
     setCarList(resp);
   };
+
   return (
     <div>
       <Header />
 
-      {/* <div className="p-16 bg-black flex justify-center">
-        <Search />
-      </div> */}
-      <div className=" p-10 md:px-20">
+      <div className="p-10 md:px-20">
+
+        {/* ⭐ BACK BUTTON */}
+        <Link
+          to="/"
+          className="
+            flex items-center gap-2 text-sm font-medium 
+            text-black w-fit cursor-pointer mb-4
+            hover:underline hover:opacity-80 transition
+          "
+        >
+          <BiArrowBack className="text-lg" />
+          Back
+        </Link>
+
+        {/* Category Title */}
         <h2 className="font-bold text-4xl">{category}</h2>
 
         {/* List of CarList */}
