@@ -1,36 +1,41 @@
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { UserButton, useUser } from "@clerk/clerk-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
 
 const Header = () => {
   const { isSignedIn } = useUser();
   const [openMenu, setOpenMenu] = useState(false);
+  const navigate = useNavigate();
 
-  // WhatsApp Message (Hinglish)
+  // WhatsApp Message
   const whatsappMessage = encodeURIComponent(
     "Hello Vinit Cars, mujhe ek car ke baare mein information chahiye."
   );
 
-  // Universal Maps Link (Auto opens Maps App on mobile)
+  // Universal Maps Link
   const mapsLink =
     "https://www.google.com/maps/search/?api=1&query=Vinit+Auto+Car+Mall+Malegaon";
+
+  const handleSubmitClick = () => {
+    if (!isSignedIn) navigate("/sign-in");
+    else navigate("/profile");
+  };
 
   return (
     <div className="shadow-sm p-5 relative bg-white">
 
       {/* TOP BAR */}
       <div className="flex justify-between items-center">
-
-        {/* LOGO WITH ANIMATION */}
+        
+        {/* LOGO */}
         <Link to="/">
           <h1
             className="
               text-3xl font-extrabold tracking-wide 
-              bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 
-              bg-clip-text text-transparent 
-              animate-gradient-x
+              bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500
+              bg-clip-text text-transparent animate-gradient-x
             "
           >
             VINIT CARS
@@ -42,29 +47,30 @@ const Header = () => {
 
           <Link to="/">
             <li className="cursor-pointer transition 
-              hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 
+              hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-700
               hover:text-white px-3 py-1 rounded-md">
               Home
             </li>
           </Link>
 
           <Link to="/search">
-            <li className="cursor-pointer transition 
-            hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-700 
-            hover:text-white px-3 py-1 rounded-md">
+            <li className="cursor-pointer transition
+              hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-700
+              hover:text-white px-3 py-1 rounded-md">
               Cars
             </li>
           </Link>
 
-          
-
           {/* WHATSAPP */}
           <li
             onClick={() =>
-              window.open(`https://wa.me/919284438720?text=${whatsappMessage}`, "_blank")
+              window.open(
+                `https://wa.me/919284438720?text=${whatsappMessage}`,
+                "_blank"
+              )
             }
-            className="cursor-pointer transition 
-              hover:bg-gradient-to-r hover:from-green-500 hover:to-green-700 
+            className="cursor-pointer transition
+              hover:bg-gradient-to-r hover:from-green-500 hover:to-green-700
               hover:text-white px-3 py-1 rounded-md"
           >
             WhatsApp
@@ -73,8 +79,8 @@ const Header = () => {
           {/* CALL */}
           <li
             onClick={() => (window.location.href = "tel:+919284438720")}
-            className="cursor-pointer transition 
-              hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-800 
+            className="cursor-pointer transition
+              hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-800
               hover:text-white px-3 py-1 rounded-md"
           >
             Call Dealer
@@ -83,38 +89,37 @@ const Header = () => {
           {/* LOCATION */}
           <li
             onClick={() => window.open(mapsLink, "_blank")}
-            className="cursor-pointer transition 
-              hover:bg-gradient-to-r hover:from-purple-600 hover:to-purple-800 
+            className="cursor-pointer transition
+              hover:bg-gradient-to-r hover:from-purple-600 hover:to-purple-800
               hover:text-white px-3 py-1 rounded-md"
           >
             Location
           </li>
 
+          {/* REVIEWS */}
           <a
             href="https://youtube-shorts-zeta.vercel.app/"
-            className="cursor-pointer transition 
-              hover:bg-gradient-to-r hover:from-yellow-500 hover:to-orange-600 
+            className="cursor-pointer transition
+              hover:bg-gradient-to-r hover:from-yellow-500 hover:to-orange-600
               hover:text-white px-3 py-1 rounded-md"
           >
             Reviews
           </a>
         </ul>
 
-        {/* DESKTOP BUTTONS */}
-        {isSignedIn ? (
-          <div className="hidden md:flex items-center gap-5">
-            <UserButton />
-            <Link to="/profile">
-              <Button>Submit Listings</Button>
-            </Link>
-          </div>
-        ) : (
-          <div className="hidden md:block">
-            <Button>Submit Listings</Button>
-          </div>
-        )}
+        {/* DESKTOP SUBMIT BUTTON */}
+        <div className="hidden md:block">
+          {isSignedIn ? (
+            <div className="flex items-center gap-5">
+              <UserButton />
+              <Button onClick={handleSubmitClick}>Submit Listings</Button>
+            </div>
+          ) : (
+            <Button onClick={handleSubmitClick}>Submit Listings</Button>
+          )}
+        </div>
 
-        {/* MOBILE HAMBURGER */}
+        {/* MOBILE MENU ICON */}
         <div className="md:hidden">
           <HiMenu
             className="text-3xl cursor-pointer"
@@ -123,7 +128,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* MOBILE SLIDE MENU */}
+      {/* MOBILE DRAWER */}
       {openMenu && (
         <div className="fixed top-0 right-0 h-full w-64 bg-white shadow-lg p-7 z-50">
           <HiX
@@ -141,9 +146,7 @@ const Header = () => {
               <li className="cursor-pointer">Cars</li>
             </Link>
 
-            
-
-            {/* WHATSAPP */}
+            {/* WHATSAPP MOBILE */}
             <li
               onClick={() =>
                 window.open(
@@ -156,7 +159,7 @@ const Header = () => {
               WhatsApp
             </li>
 
-            {/* CALL */}
+            {/* CALL MOBILE */}
             <li
               onClick={() => (window.location.href = "tel:+919284438720")}
               className="cursor-pointer text-blue-600"
@@ -164,7 +167,7 @@ const Header = () => {
               Call Dealer
             </li>
 
-            {/* MAP */}
+            {/* LOCATION MOBILE */}
             <li
               onClick={() => window.open(mapsLink, "_blank")}
               className="cursor-pointer text-purple-600"
@@ -172,6 +175,7 @@ const Header = () => {
               Location
             </li>
 
+            {/* REVIEWS */}
             <a
               href="https://youtube-shorts-zeta.vercel.app"
               onClick={() => setOpenMenu(false)}
@@ -179,9 +183,13 @@ const Header = () => {
               <li className="cursor-pointer">Reviews</li>
             </a>
 
-            <Link to="/profile" onClick={() => setOpenMenu(false)}>
-              <Button className="mt-4 w-full">Submit Listings</Button>
-            </Link>
+            {/* MOBILE SUBMIT BUTTON */}
+            <Button className="mt-4 w-full" onClick={() => {
+              setOpenMenu(false);
+              handleSubmitClick();
+            }}>
+              Submit Listings
+            </Button>
           </ul>
         </div>
       )}

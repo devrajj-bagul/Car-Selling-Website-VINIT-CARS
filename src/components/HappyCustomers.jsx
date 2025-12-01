@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
 
 /* Convert Shorts link → Clean embed link */
 const cleanEmbed = (url) => {
@@ -50,16 +49,10 @@ const HappyCustomers = () => {
     <section className="w-full py-14 bg-gradient-to-br from-gray-100 via-gray-50 to-gray-200">
       <div className="max-w-6xl mx-auto px-4">
 
-        {/* ✨ Heading Animation */}
-        <motion.h2
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-3xl font-bold text-center mb-10"
-        >
+        {/* Heading */}
+        <h2 className="text-3xl font-bold text-center mb-10">
           Happy Customers 🎉
-        </motion.h2>
+        </h2>
 
         {/* Grid */}
         <div
@@ -68,25 +61,15 @@ const HappyCustomers = () => {
             place-items-center
           "
         >
-          {reels.map((item, index) => (
-            <motion.div
+          {reels.map((item) => (
+            <div
               key={item.id}
-              initial={{ opacity: 0, scale: 0.8, y: 40 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.15,
-                ease: "easeOut",
-              }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
               className="
                 bg-white rounded-xl shadow-xl p-3 
                 flex items-center justify-center cursor-pointer
                 aspect-[9/16] overflow-hidden
                 w-[85%] max-w-[330px]
                 sm:w-full sm:max-w-none
-                transition
               "
               onClick={() => setActiveVideo(item.id)}
             >
@@ -100,28 +83,20 @@ const HappyCustomers = () => {
                 allowFullScreen
                 frameBorder="0"
               ></iframe>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        {/* ⭐ Animated Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="flex justify-center mt-10"
-        >
-          <motion.a
+        {/* Watch More Button */}
+        <div className="flex justify-center mt-10">
+          <a
             href="https://youtube-shorts-zeta.vercel.app"
             target="_blank"
-            whileHover={{ scale: 1.07 }}
-            whileTap={{ scale: 0.96 }}
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full shadow-lg transition"
           >
             ⭐ Watch More Reviews
-          </motion.a>
-        </motion.div>
+          </a>
+        </div>
 
       </div>
     </section>
